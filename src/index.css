@@ -1,0 +1,9 @@
+/*
+:root {
+  background-color: #2b2a33;
+}
+*/
+body {
+  background: rgb(43, 42, 51) !important;
+  background: linear-gradient(0deg, rgba(43, 42, 51, 1) 0%, rgba(2, 0, 36, 1) 75%, rgba(59, 19, 82, 1) 100%) !important;
+}
