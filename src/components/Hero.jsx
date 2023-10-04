@@ -1,4 +1,6 @@
 import React from 'react'
+import Perfil from "../assets/Perfil2.webp"
+import Cv from "../assets/CV-Santiago Cabrerizo.pdf"
 
 export const Hero = () => {
 
@@ -21,15 +23,15 @@ export const Hero = () => {
                 <div className="text-center">
 
                     <div className="d-flex justify-content-center">
-                        <img src="src/assets/Perfil2.webp" alt="Img perfil" width={300} className='img-perfil m-5' />
+                        <img src={Perfil} alt="Img perfil" width={300} className='img-perfil m-5' />
                     </div>
 
                     <h1 className="display-2 lh-1 mb-3">Hola, soy <span className="purple">Santiago Cabrerizo</span></h1>
-                    <p className="display-6 mb-5"><span className='purple'>-</span> Programador Web Full Stack <span className='purple'>-</span></p>
+                    <p className="display-6 mb-5"><span className='purple'>{'<'}</span> Programador Web Full Stack <span className='purple'>{'>'}</span></p>
                     <hr />
 
                     <div className="mt-4">
-                        <a href="src/assets/CV - Santiago Cabrerizo.pdf" download={"CV - Santiago Cabrerizo"} target='_blank' className='btn boton'>Descargar CV</a>
+                        <a href={Cv} download={"CV-Santiago Cabrerizo"} target='_blank' className='btn boton'>Descargar CV</a>
                     </div>
 
                 </div>

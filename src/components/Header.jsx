@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import Logo from "../assets/Logo2.png"
+
 
 export const Header = () => {
 
@@ -7,7 +9,9 @@ export const Header = () => {
             <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid col-xxl-8 px-4 mt-2">
 
-                    <img src="src/assets/Logo2.png" alt="Logo" width={350} className='navbar-brand d-flex align-items-center mb-md-0 me-md-auto' />
+                    <a href="#" className='navbar-brand d-flex align-items-center mb-md-0 me-md-auto'>
+                        <img src={Logo} alt="Logo" width={350} className='' />
+                    </a>
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
