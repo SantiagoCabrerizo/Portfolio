@@ -4,6 +4,10 @@
 
 /*HEADER*/
 
+.list-header:hover{
+    cursor: pointer;
+}
+
 .list-header::before {
     margin-left: auto;
 }
@@ -23,7 +27,9 @@
     width: 100%;
 }
 
-/*HERO*/
+
+
+/*----*/
 
 .img-perfil {
     border-radius: 50px;

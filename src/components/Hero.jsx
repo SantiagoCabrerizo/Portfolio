@@ -18,7 +18,7 @@ export const Hero = () => {
 
 
     return (
-        <div className='hero' id='inicio'>
+        <div className='hero'>
             <div className="container col-xxl-8 px-4 py-5">
                 <div className="text-center">
 

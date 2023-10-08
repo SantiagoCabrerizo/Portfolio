@@ -11,7 +11,7 @@ import logoMysql from '../assets/mysql.webp'
 
 export const Skills = () => {
     return (
-        <div className='habilidades' id='habilidades'>
+        <div className='habilidades' id='skills'>
             <div className="container album col-xxl-8 px-4 py-5 text-center">
                 <h1 className="display-5 fw-bold text-body-emphasis lh-1">Habilidades<span className="purple">.</span></h1>
 
