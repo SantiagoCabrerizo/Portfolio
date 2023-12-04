@@ -19,43 +19,39 @@ export const Contact = () => {
             .then((res) => {
                 setMensajeEnviado(true)
             })
-
-
-
     }
-
-
-
     return (
         <div id='contact'>
             <div className="container col-xxl-8 px-4 py-5 text-center">
                 <div className="py-5">
-                    <h1 className="display-5 fw-bold text-body-emphasis lh-1 mb-3">Contacto<span className="purple">.</span></h1>
+                    <h1 className="display-4 font-semibold text-body-emphasis lh-1 mb-3">Contacto<span className="purple">.</span></h1>
 
-                    <div className='py-3 text-start'>
+                    <div className='form-signin py-3'>
 
+                        <form ref={form} onSubmit={handleSubmit(sendEmail)} className='row g-2'>
 
-                        <form ref={form} onSubmit={handleSubmit(sendEmail)}>
-                            <div className='row'>
-                                <div className="mb-3 col ">
-                                    <label htmlFor="exampleFormControlInput1" className="form-label">Nombre</label>
-                                    <input type="text" name='user_name' className="form-control" id="exampleFormControlInput1"
-                                        {...register("user_name", { required: true })} />
-                                    {errors.user_name && <span className='span-validation'>Ingrese su nombre</span>}
-                                </div>
-                                <div className="mb-3 col">
-                                    <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                                    <input type="email" name='user_email' className="form-control" id="exampleFormControlInput2"
-                                        {...register("user_email", { required: true })} />
-                                    {errors.user_email && <span className='span-validation'>Ingrese su email</span>}
-                                </div>
+                            <div className="form-floating mb-3 col-md-6">
+                                <input type="text" name='user_name' className="form-control" id="floatingInput1" placeholder='Nombre'
+                                    {...register("user_name", { required: true })} /> 
+                                <label htmlFor="floatingInput1">Nombre</label>
+                                {errors.user_name &&
+                                    <span role='alert' className='span-validation d-flex ps-2'>Ingrese su nombre</span>}
                             </div>
 
-                            <div className="mb-3">
-                                <label htmlFor="exampleFormControlTextarea1" className="form-label">Mensaje</label>
-                                <textarea className="form-control" name='message' id="exampleFormControlTextarea1" rows="3"
+                            <div className="form-floating mb-3 col-md-6">
+                                <input type="email" name='user_email' className="form-control" id="floatingInput2" placeholder='Email'
+                                    {...register("user_email", { required: true })} />
+                                <label htmlFor="floatingInput2">Email</label>
+                                {errors.user_email &&
+                                    <span role='alert' className='span-validation d-flex ps-2'>Ingrese su email</span>}
+                            </div>
+
+                            <div className="form-floating mb-3 mx-auto">
+                                <textarea className="form-control msg" name='message' id="floatingTextarea1" rows="3" placeholder='Mensaje'
                                     {...register("message", { required: true })}></textarea>
-                                {errors.message && <span className='span-validation'>Ingrese su mensaje</span>}
+                                <label htmlFor="floatingTextarea1" className="form-label">Mensaje</label>
+                                {errors.message &&
+                                    <span role='alert' className='span-validation d-flex ps-2'>Ingrese su mensaje</span>}
                             </div>
 
                             <div className='d-flex justify-content-center mt-4'>

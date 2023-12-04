@@ -2,9 +2,13 @@
     color: #b246f0 !important;
 }
 
-/*HEADER*/
+/*----HEADER----*/
 
-.list-header:hover{
+.backg {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.list-header:hover {
     cursor: pointer;
 }
 
@@ -26,10 +30,6 @@
 .list-header:hover::before {
     width: 100%;
 }
-
-
-
-/*----*/
 
 .img-perfil {
     border-radius: 50px;
@@ -160,6 +160,15 @@ hr {
     box-shadow: 0 0 1px 0.25rem #8638b3;
 }
 
+.span-validation {
+    color: #d0a5e8;
+}
+
+.msg{
+    height: auto !important; 
+}
+
+
 /*FOOTER*/
 
 .boton-footer,
@@ -172,7 +181,46 @@ hr {
     color: #c8add6;
 }
 
-/*CONTACT*/
-.span-validation{
-    color: #d0a5e8;
+.bi-arrow-up-circle {
+    cursor: pointer;
+    width: 30px;
+    margin: auto;
+    color: rgb(169, 173, 173);
+}
+
+/*----FONT----*/
+@font-face {
+    font-family: givonic-black;
+    src: url(/public/Givonic-Black.ttf);
+}
+
+@font-face {
+    font-family: givonic-bold;
+    src: url(/public/Givonic-Bold.ttf);
+}
+
+@font-face {
+    font-family: givonic-semibold;
+    src: url(/public/Givonic-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: givonic-light;
+    src: url(/public/Givonic-Light.ttf);
+}
+
+.font-black {
+    font-family: givonic-black;
+}
+
+.font-bold {
+    font-family: givonic-bold;
+}
+
+.font-semibold {
+    font-family: givonic-semibold;
+}
+
+.font-light {
+    font-family: givonic-light;
 }

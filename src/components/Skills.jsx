@@ -13,7 +13,7 @@ export const Skills = () => {
     return (
         <div className='habilidades' id='skills'>
             <div className="container album col-xxl-8 px-4 py-5 text-center">
-                <h1 className="display-5 fw-bold text-body-emphasis lh-1">Habilidades<span className="purple">.</span></h1>
+                <h1 className="display-4 font-semibold text-body-emphasis lh-1 mb-3">Habilidades<span className="purple">.</span></h1>
 
                 <div className="d-flex flex-wrap gap-3 justify-content-center py-5">
 
