@@ -9,7 +9,7 @@ export const Hero = () => {
     }), []
 
     return (
-        <div className='hero'>
+        <div className='center d-flex align-items-center'>
             <div className="container col-xxl-8 px-4 pb-5 pt-3">
                 <div className="text-center">
 
@@ -18,7 +18,7 @@ export const Hero = () => {
                     </div>
 
                     <h1 className="display-1 lh-1 mb-3 font-black purple">Santiago Cabrerizo</h1>
-                    <p className="display-5 mb-5 font-bold" data-aos='fade-down'><span className='purple'>{'<'}</span> Programador Web Full Stack <span className='purple'>{'>'}</span></p>
+                    <p className="display-5 mb-5 font-bold"><span className='purple' data-aos='zoom-in'>{'<'}</span> Programador Web Full Stack <span className='purple' data-aos='zoom-in'>{'>'}</span></p>
                     <hr />
 
                     <div className="mt-4">

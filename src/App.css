@@ -1,3 +1,7 @@
+.center {
+    height: 100vh;
+}
+
 .purple {
     color: #b246f0 !important;
 }
@@ -77,9 +81,10 @@ hr {
     width: 250%;
 }
 
+
 /*----SKILLS----*/
 
-.badge img{
+.badge img {
     height: 70px;
     margin: auto;
 }
