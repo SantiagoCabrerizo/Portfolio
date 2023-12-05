@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Perfil from "../assets/Perfil2.webp"
 import Cv from "../assets/Santiago Cabrerizo CV.pdf"
 
 export const Hero = () => {
+
+    useEffect(() => {
+        AOS.init()
+    }), []
 
     return (
         <div className='hero'>
@@ -14,7 +18,7 @@ export const Hero = () => {
                     </div>
 
                     <h1 className="display-1 lh-1 mb-3 font-black purple">Santiago Cabrerizo</h1>
-                    <p className="display-5 mb-5 font-bold"><span className='purple'>{'<'}</span> Programador Web Full Stack <span className='purple'>{'>'}</span></p>
+                    <p className="display-5 mb-5 font-bold" data-aos='fade-down'><span className='purple'>{'<'}</span> Programador Web Full Stack <span className='purple'>{'>'}</span></p>
                     <hr />
 
                     <div className="mt-4">

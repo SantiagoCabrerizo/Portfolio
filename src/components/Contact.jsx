@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { useForm } from 'react-hook-form';
 
@@ -20,6 +20,11 @@ export const Contact = () => {
                 setMensajeEnviado(true)
             })
     }
+
+    useEffect(()=>{
+        AOS.init()
+    }),[]
+
     return (
         <div id='contact'>
             <div className="container col-xxl-8 px-4 py-5 text-center">
@@ -30,7 +35,7 @@ export const Contact = () => {
 
                         <form ref={form} onSubmit={handleSubmit(sendEmail)} className='row g-2'>
 
-                            <div className="form-floating mb-3 col-md-6">
+                            <div className="form-floating mb-3 col-md-6" data-aos='fade-up' >
                                 <input type="text" name='user_name' className="form-control" id="floatingInput1" placeholder='Nombre'
                                     {...register("user_name", { required: true })} /> 
                                 <label htmlFor="floatingInput1">Nombre</label>
@@ -38,7 +43,7 @@ export const Contact = () => {
                                     <span role='alert' className='span-validation d-flex ps-2'>Ingrese su nombre</span>}
                             </div>
 
-                            <div className="form-floating mb-3 col-md-6">
+                            <div className="form-floating mb-3 col-md-6" data-aos='fade-up'>
                                 <input type="email" name='user_email' className="form-control" id="floatingInput2" placeholder='Email'
                                     {...register("user_email", { required: true })} />
                                 <label htmlFor="floatingInput2">Email</label>
@@ -46,7 +51,7 @@ export const Contact = () => {
                                     <span role='alert' className='span-validation d-flex ps-2'>Ingrese su email</span>}
                             </div>
 
-                            <div className="form-floating mb-3 mx-auto">
+                            <div className="form-floating mb-3 mx-auto" data-aos='fade-up'>
                                 <textarea className="form-control msg" name='message' id="floatingTextarea1" rows="3" placeholder='Mensaje'
                                     {...register("message", { required: true })}></textarea>
                                 <label htmlFor="floatingTextarea1" className="form-label">Mensaje</label>

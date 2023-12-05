@@ -77,7 +77,15 @@ hr {
     width: 250%;
 }
 
-/*CONTACT*/
+/*----SKILLS----*/
+
+.badge img{
+    height: 70px;
+    margin: auto;
+}
+
+
+/*----CONTACT----*/
 
 .boton-form {
     --primary-color: #8638b3;
@@ -164,12 +172,12 @@ hr {
     color: #d0a5e8;
 }
 
-.msg{
-    height: auto !important; 
+.msg {
+    height: auto !important;
 }
 
 
-/*FOOTER*/
+/*----FOOTER----*/
 
 .boton-footer,
 .boton-footer:hover {
