@@ -23,10 +23,10 @@ export const Header = () => {
                         <Scroll to='skills' smooth={true} duration={50} className='nav-link link-body-emphasis list-header font-light'>Habilidades</Scroll>
                     </li>
                     <li className="nav-item">
-                        <Scroll to='contact' smooth={true} duration={50} className='nav-link link-body-emphasis list-header font-light'>Contacto</Scroll>
+                        <Scroll to='projects' smooth={true} duration={50} className='nav-link link-body-emphasis list-header font-light'>Proyectos</Scroll>
                     </li>
                     <li className="nav-item">
-                        <Scroll to='/' smooth={true} duration={50} className='nav-link link-body-emphasis list-header font-light disabled'>Proyectos</Scroll>
+                        <Scroll to='contact' smooth={true} duration={50} className='nav-link link-body-emphasis list-header font-light'>Contacto</Scroll>
                     </li>
                 </ul>
             </header>
