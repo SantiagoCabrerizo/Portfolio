@@ -2,12 +2,13 @@ import React, { useEffect } from 'react'
 import '../Projects/style.css'
 import ImgR from '../../assets/RVU-project.webp'
 import ImgI from '../../assets/Img-Inmobiliaria.webp'
+import ImgT from '../../assets/Todo-list.webp'
 
 const Projects = () => {
 
-    useEffect(()=>{
+    useEffect(() => {
         AOS.init()
-    }),[]
+    }), []
 
     return (
         <div id='projects' className='center d-flex align-items-center'>
@@ -46,7 +47,26 @@ const Projects = () => {
                                 </div>
                             </a>
                         </div>
+
                     </div>
+
+                    <div className='row'>
+                        <div className="col" data-aos='fade-up'>
+                            <a href="https://todolistcabrerizo.netlify.app/" target='_blank'>
+                                <div className="card">
+                                    <div className="img-card">
+                                        <img src={ImgT} className='card-img-top img' alt="img" />
+                                    </div>
+                                    <div className='body-card'>
+                                        <h5 className='card-title font-semibold'>Todo List</h5>
+                                        <p className='purple mb-0 font-semibold'>Front End</p>
+                                        <p className='font-light'>JavaScript, HTML, CSS, React</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
