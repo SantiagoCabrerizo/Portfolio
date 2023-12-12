@@ -1,3 +1,3 @@
-# <a href="https://santiagocabrerizo.netlify.app/">Portfolio - Santiago Cabrerizo</a>
+# Portfolio - Santiago Cabrerizo
 
 JavaScript, HTML, CSS, React
