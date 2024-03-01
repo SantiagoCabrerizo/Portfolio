@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Perfil from "../assets/Perfil2.webp"
-import Cv from "../assets/Santiago Cabrerizo CV.pdf"
+import Cv from "../assets/CV Santiago Cabrerizo.pdf"
 
 export const Hero = () => {
 
