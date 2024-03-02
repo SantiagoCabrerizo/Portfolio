@@ -14,7 +14,7 @@ export const Hero = () => {
                 <div className="text-center">
 
                     <div className="d-flex justify-content-center">
-                        <img src={Perfil} alt="Img perfil" width={300} className='img-perfil m-5' />
+                        <img src={Perfil} alt="Img perfil" className='img-perfil m-5' />
                     </div>
 
                     <h1 className="display-1 lh-1 mb-3 font-black purple">Santiago Cabrerizo</h1>

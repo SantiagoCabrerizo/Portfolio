@@ -7,7 +7,7 @@ export const Footer = () => {
         <div className='backg'>
             <div className='container col-xxl-8 p-4'>
 
-                <footer className='row'>
+                <footer className='row my-2'>
 
                     <div className='col d-flex align-items-center'>
                         <p className="text-body-secondary">&copy; 2023 - Santiago Cabrerizo</p>
