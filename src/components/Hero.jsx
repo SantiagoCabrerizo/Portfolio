@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import Perfil from "../assets/Perfil2.webp"
-import Cv from "../assets/CV-SantiagoCabrerizo.pdf"
-
+import Cv from "../assets/CV - SantiagoCabrerizo.pdf"
 export const Hero = () => {
 
     useEffect(() => {
@@ -22,7 +21,7 @@ export const Hero = () => {
                     <hr />
 
                     <div className="mt-4">
-                        <a href={Cv} download={"CV-Santiago Cabrerizo"} target='_blank' className='btn boton'>Descargar CV</a>
+                        <a href={Cv} download={"CV - Santiago Cabrerizo"} target='_blank' className='btn boton'>Descargar CV</a>
                     </div>
 
                 </div>
