@@ -15,8 +15,7 @@ export const About = () => {
                         Programador Full Stack con conocimientos y experiencia en la creación de
                         aplicaciones web. Mi experiencia incluye tanto el diseño como el desarrollo de
                         aplicaciones escalables, la integración de APIs, el uso de herramientas de control de
-                        versiones y estoy familiarizado con prácticas ágiles como SCRUM.<br/>
-                        Además, me encuentro cursando la carrera de Ingeniería en Sistemas en la Universidad Tecnológica Nacional FRM.
+                        versiones y estoy familiarizado con prácticas ágiles como SCRUM. Actualmente, me encuentro cursando la carrera de Ingeniería en Sistemas en la Universidad Tecnológica Nacional FRM.
                     </p>
                 </div>
             </div>

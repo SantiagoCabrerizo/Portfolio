@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import '../Projects/style.css'
 import ImgR from '../../assets/RVU-project.webp'
 import ImgI from '../../assets/Img-Inmobiliaria.webp'
-import ImgT from '../../assets/Todo-list.webp'
+import ImgC from '../../assets/Chatbot.webp'
 
 const Projects = () => {
 
@@ -27,7 +27,7 @@ const Projects = () => {
                                     <div className='body-card'>
                                         <h5 className='card-title font-semibold'>Aplicación Web Inmobiliaria</h5>
                                         <p className='purple mb-0 font-semibold'>Full Stack</p>
-                                        <p className='font-light'>JavaScript, HTML, CSS, React, Java, Spring, MySQL</p>
+                                        <p className='font-light'>Java, Spring, MySQL, JavaScript, HTML, CSS, React</p>
                                     </div>
                                 </div>
                             </a>
@@ -52,15 +52,15 @@ const Projects = () => {
 
                     <div className='row'>
                         <div className="col" data-aos='fade-up'>
-                            <a href="https://todolistcabrerizo.netlify.app/" target='_blank'>
+                            <a href="https://github.com/SantiagoCabrerizo" target='_blank'>
                                 <div className="card">
                                     <div className="img-card">
-                                        <img src={ImgT} className='card-img-top img' alt="img" />
+                                        <img src={ImgC} className='card-img-top img' alt="img" />
                                     </div>
                                     <div className='body-card'>
-                                        <h5 className='card-title font-semibold'>Todo List</h5>
-                                        <p className='purple mb-0 font-semibold'>Front End</p>
-                                        <p className='font-light'>JavaScript, HTML, CSS, React</p>
+                                        <h5 className='card-title font-semibold'>ChatBot - RST (En proceso...)</h5>
+                                        <p className='purple mb-0 font-semibold'>Full Stack</p>
+                                        <p className='font-light'>Node.js, SupaBase, TypeScript, Next.js, Tailwind</p>
                                     </div>
                                 </div>
                             </a>

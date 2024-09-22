@@ -46,3 +46,8 @@ a{
         opacity: 1;
     }
 }
+
+.disabled-link{
+    cursor: default;
+    pointer-events: none;
+}
