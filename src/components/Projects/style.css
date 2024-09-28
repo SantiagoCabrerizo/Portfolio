@@ -4,6 +4,10 @@
     transition: transform .5s ease;
 }
 
+.img-bt{
+    height: 475px;
+}
+
 .card {
     background: none;
     border: none;
@@ -44,6 +48,9 @@ a{
 @media only screen and (max-width: 600px) {
     .card p {
         opacity: 1;
+    }
+    .img{
+        height: auto;
     }
 }
 

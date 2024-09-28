@@ -19,7 +19,7 @@ const Projects = () => {
                     <div className='row row-cols-1 row-cols-md-2 row-cols-sm-1 g-3'>
 
                         <div className="col col-md-5" data-aos='fade-up'>
-                            <a href="https://github.com/SantiagoCabrerizo/Proyecto-Inmobiliaria" target='_blank'>
+                            <a href="https://github.com/SantiagoCabrerizo/Proyecto-Inmobiliaria" target='_blank' rel='noreferrer'>
                                 <div className="card">
                                     <div className="img-card">
                                         <img src={ImgI} className='card-img-top img' alt="img" />
@@ -52,13 +52,13 @@ const Projects = () => {
 
                     <div className='row'>
                         <div className="col" data-aos='fade-up'>
-                            <a href="https://github.com/SantiagoCabrerizo" target='_blank'>
+                            <a href="https://github.com/SantiagoCabrerizo" target='_blank' rel='noreferrer'>
                                 <div className="card">
                                     <div className="img-card">
-                                        <img src={ImgC} className='card-img-top img' alt="img" />
+                                        <img src={ImgC} className='card-img-top img img-bt' alt="img"/>
                                     </div>
                                     <div className='body-card'>
-                                        <h5 className='card-title font-semibold'>ChatBot - RST (En proceso...)</h5>
+                                        <h5 className='card-title font-semibold'>ChatBot - RST</h5>
                                         <p className='purple mb-0 font-semibold'>Full Stack</p>
                                         <p className='font-light'>Node.js, SupaBase, TypeScript, Next.js, Tailwind</p>
                                     </div>
