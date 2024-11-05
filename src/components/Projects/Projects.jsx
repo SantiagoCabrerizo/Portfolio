@@ -41,8 +41,8 @@ const Projects = () => {
                                     </div>
                                     <div className='body-card'>
                                         <h5 className='card-title font-semibold'>Sitio Web Rectificadora</h5>
-                                        <p className='purple mb-0 font-semibold'>Front End</p>
-                                        <p className='font-light'>JavaScript, HTML, CSS, React</p>
+                                        <p className='purple mb-0 font-semibold'>EN PROCESO...</p>
+                                        <p className='font-light'></p>
                                     </div>
                                 </div>
                             </a>
