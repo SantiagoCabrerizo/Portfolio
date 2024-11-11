@@ -27,22 +27,22 @@ const Projects = () => {
                                     <div className='body-card'>
                                         <h5 className='card-title font-semibold'>Aplicación Web Inmobiliaria</h5>
                                         <p className='purple mb-0 font-semibold'>Full Stack</p>
-                                        <p className='font-light'>Java, Spring, MySQL, JavaScript, HTML, CSS, React</p>
+                                        <p className='font-light'>Java, Spring, MySQL, React</p>
                                     </div>
                                 </div>
                             </a>
                         </div>
 
                         <div className="col col-md-7" data-aos='fade-up'>
-                            <a href="">
+                            <a href="https://rectificacionesvalledeuco.netlify.app/" target='_blank' rel='noreferrer'>
                                 <div className="card">
                                     <div className="img-card">
                                         <img src={ImgR} className='card-img-top img' alt="img" />
                                     </div>
                                     <div className='body-card'>
-                                        <h5 className='card-title font-semibold'>Sitio Web Rectificadora</h5>
-                                        <p className='purple mb-0 font-semibold'>EN PROCESO...</p>
-                                        <p className='font-light'></p>
+                                        <h5 className='card-title font-semibold'>Landing Page Rectificadora</h5>
+                                        <p className='purple mb-0 font-semibold'>Front End</p>
+                                        <p className='font-light'>React - Vite, Tailwind</p>
                                     </div>
                                 </div>
                             </a>
@@ -52,10 +52,10 @@ const Projects = () => {
 
                     <div className='row'>
                         <div className="col" data-aos='fade-up'>
-                            <a href="https://github.com/SantiagoCabrerizo" target='_blank' rel='noreferrer'>
+                            <a href="https://www.danielbot.com.ar/" target='_blank' rel='noreferrer'>
                                 <div className="card">
                                     <div className="img-card">
-                                        <img src={ImgC} className='card-img-top img img-bt' alt="img"/>
+                                        <img src={ImgC} className='card-img-top img img-bt' alt="img" />
                                     </div>
                                     <div className='body-card'>
                                         <h5 className='card-title font-semibold'>ChatBot - RST</h5>
