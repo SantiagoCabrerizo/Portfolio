@@ -1,3 +1,4 @@
 # Portfolio - Santiago Cabrerizo
 
-JavaScript, HTML, CSS, React
+* JavaScript, React
+* Netlify
