@@ -69,7 +69,7 @@ const Projects = () => {
                             </a>
                         </div>
                         <div className="col col-md-5" data-aos='fade-up'>
-                            <a href="https://www.danielbot.com.ar/" target='_blank' rel='noreferrer'>
+                            <a href="https://github.com/SantiagoCabrerizo/ChallengeChatBot" target='_blank' rel='noreferrer'>
                                 <div className="card">
                                     <div className="img-card">
                                         <img src={ImgCC} className='card-img-top img' alt="img" />
