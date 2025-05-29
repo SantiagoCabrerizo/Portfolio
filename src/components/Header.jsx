@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link as Scroll } from 'react-scroll'
 
 

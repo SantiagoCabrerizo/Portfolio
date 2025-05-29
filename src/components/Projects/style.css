@@ -58,3 +58,33 @@ a{
     cursor: default;
     pointer-events: none;
 }
+
+.img-app {
+    max-width: 150px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+.img-app:hover {
+    transform: scale(1.05);
+}
+
+
+.custom-group p {
+    opacity: 0;
+    transition: opacity 0.5s ease-in 0.2s;
+}
+
+.custom-group:hover p {
+    opacity: 1;
+    transition: opacity 0.8s ease-out;
+}
+
+/* Si solo querés que el hover general (no cada imagen) anime el grupo completo */
+.custom-group:hover .img-app {
+    transform: scale(1.03);
+}
+
+
