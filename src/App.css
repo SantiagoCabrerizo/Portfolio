@@ -205,7 +205,7 @@ hr {
 /* ---- FONT ---- */
 @font-face {
   font-family: "Givonic";
-  src: url("./assets/fonts/Givonic-Black.woff2") format("woff2");
+  src: url("/public/assets/Givonic-Black.woff2") format("woff2");
   font-weight: 900;
   font-display: swap;
 }

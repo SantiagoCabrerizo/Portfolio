@@ -4,11 +4,11 @@ import ImgR from "../../assets/RVU-project.webp";
 import ImgI from "../../assets/Img-Inmobiliaria.webp";
 import ImgC from "../../assets/Chatbot.webp";
 import ImgCC from "../../assets/ChatbotChallenge.webp";
-import img1 from "../../assets/gestor_home.jpg";
-import img2 from "../../assets/gestor_cliente.jpg";
-import img3 from "../../assets/gestor_venta.jpg";
-import img4 from "../../assets/gestor_prod.jpg";
-import img5 from "../../assets/gestor_deuda.jpg";
+import img1 from "../../assets/gestorVentas/gestor_home.webp";
+import img2 from "../../assets/gestorVentas/gestor_cliente.webp";
+import img3 from "../../assets/gestorVentas/gestor_venta.webp";
+import img4 from "../../assets/gestorVentas/gestor_prod.webp";
+import img5 from "../../assets/gestorVentas/gestor_deuda.webp";
 
 const Projects = () => {
   useEffect(() => {
