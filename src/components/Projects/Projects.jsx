@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "../Projects/style.css";
 import ImgR from "../../assets/RVU-project.webp";
-import ImgI from "../../assets/Img-Inmobiliaria.webp";
+import ImgG from "../../assets/Glamping.webp";
 import ImgC from "../../assets/Chatbot.webp";
 import ImgCC from "../../assets/ChatbotChallenge.webp";
 import img1 from "../../assets/gestorVentas/gestor_home.webp";
@@ -25,28 +25,8 @@ const Projects = () => {
 
         <div className="py-5">
           <div className="row row-cols-1 row-cols-md-2 row-cols-sm-1 g-3">
+            
             <div className="col col-md-5" data-aos="fade-up">
-              <a
-                href="https://github.com/SantiagoCabrerizo/Proyecto-Inmobiliaria"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <div className="card">
-                  <div className="img-card">
-                    <img src={ImgI} className="card-img-top img" alt="img" />
-                  </div>
-                  <div className="body-card">
-                    <h5 className="card-title font-semibold">
-                      Aplicación Web Inmobiliaria
-                    </h5>
-                    <p className="purple mb-0 font-semibold">Full Stack</p>
-                    <p className="font-light">Java, Spring, MySQL, React</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div className="col col-md-7" data-aos="fade-up">
               <a
                 href="https://rectificacionesvalledeuco.netlify.app/"
                 target="_blank"
@@ -62,6 +42,27 @@ const Projects = () => {
                     </h5>
                     <p className="purple mb-0 font-semibold">Front End</p>
                     <p className="font-light">React - Vite, Tailwind</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div className="col col-md-7" data-aos="fade-up">
+              <a
+                href="https://glampingmendoza.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className="card">
+                  <div className="img-card">
+                    <img src={ImgG} className="card-img-top img" alt="img" />
+                  </div>
+                  <div className="body-card">
+                    <h5 className="card-title font-semibold">
+                      Aplicación Web Glamping
+                    </h5>
+                    <p className="purple mb-0 font-semibold">Full Stack</p>
+                    <p className="font-light">NodeJs, Express, Supabase, Next.js, Typescript, TailwindCSS</p>
                   </div>
                 </div>
               </a>
@@ -114,7 +115,7 @@ const Projects = () => {
             </div>
           </div>
 
-          <div className="row g-3 row-cols-sm-1" >
+          <div className="row g-3 row-cols-sm-1">
             <div className="col col-md-12" data-aos="fade-up">
               <div className="card custom-group p-3">
                 <div className="d-flex flex-wrap justify-content-center gap-md-5 gap-3">
@@ -126,10 +127,12 @@ const Projects = () => {
                 </div>
                 <div className="body-card">
                   <h5 className="card-title font-semibold mb-2">
-                    Aplicación Móvil para Gestión de Ventas - Cliente Privado
+                    Aplicación Móvil para Gestión de Ventas - Tesoros del Campo
                   </h5>
                   <p className="purple mb-0 font-semibold">Full Stack</p>
-                  <p className="font-light">React Native, Expo, TypeScipt, Node.js, Express, Supabase</p>
+                  <p className="font-light">
+                    React Native, Expo, TypeScipt, Node.js, Express, Supabase
+                  </p>
                 </div>
               </div>
             </div>
