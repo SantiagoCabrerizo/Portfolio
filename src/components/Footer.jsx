@@ -2,6 +2,8 @@ import { Link as Scroll } from 'react-scroll'
 
 export const Footer = () => {
 
+    
+
     return (
         <div className='backg'>
             <div className='container col-xxl-8 p-4'>
@@ -9,7 +11,7 @@ export const Footer = () => {
                 <footer className='row my-2'>
 
                     <div className='col d-flex align-items-center'>
-                        <p className="text-body-secondary">&copy; 2023 - Santiago Cabrerizo</p>
+                        <p className="text-body-secondary">&copy; {new Date().getFullYear()} - Santiago Cabrerizo</p>
                     </div>
 
                     <div className='col'>

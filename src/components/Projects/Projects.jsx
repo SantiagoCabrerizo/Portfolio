@@ -9,6 +9,7 @@ import img2 from "../../assets/gestorVentas/gestor_cliente.webp";
 import img3 from "../../assets/gestorVentas/gestor_venta.webp";
 import img4 from "../../assets/gestorVentas/gestor_prod.webp";
 import img5 from "../../assets/gestorVentas/gestor_deuda.webp";
+import ImgInm from "../../assets/Inmobiliaria_proyecto.webp";
 
 const Projects = () => {
   useEffect(() => {
@@ -25,7 +26,6 @@ const Projects = () => {
 
         <div className="py-5">
           <div className="row row-cols-1 row-cols-md-2 row-cols-sm-1 g-3">
-            
             <div className="col col-md-5" data-aos="fade-up">
               <a
                 href="https://rectificacionesvalledeuco.netlify.app/"
@@ -62,15 +62,18 @@ const Projects = () => {
                       Aplicación Web Glamping
                     </h5>
                     <p className="purple mb-0 font-semibold">Full Stack</p>
-                    <p className="font-light">NodeJs, Express, Supabase, Next.js, Typescript, TailwindCSS</p>
+                    <p className="font-light">
+                      NodeJs, Express, Supabase, Next.js, Typescript,
+                      TailwindCSS
+                    </p>
                   </div>
                 </div>
               </a>
             </div>
           </div>
 
-          <div className="row row-cols-1 row-cols-md-2 row-cols-sm-1 g-3">
-            <div className="col col-md-7" data-aos="fade-up">
+          <div className="row row-cols-1 row-cols-md-3 row-cols-sm-1 g-3">
+            <div className="col col-md-5" data-aos="fade-up">
               <a
                 href="https://www.danielbot.com.ar/"
                 target="_blank"
@@ -91,7 +94,7 @@ const Projects = () => {
               </a>
             </div>
 
-            <div className="col col-md-5" data-aos="fade-up">
+            <div className="col col-md-3" data-aos="fade-up">
               <a
                 href="https://github.com/SantiagoCabrerizo/ChallengeChatBot"
                 target="_blank"
@@ -108,6 +111,26 @@ const Projects = () => {
                     <p className="purple mb-0 font-semibold">Full Stack</p>
                     <p className="font-light">
                       Node.js, JavaScript, MongoDB, React, Tailwind
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div className="col col-md-4" data-aos="fade-up">
+              <a
+                href="https://github.com/SantiagoCabrerizo/Proyecto-Inmobiliaria"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className="card">
+                  <div className="img-card">
+                    <img src={ImgInm} className="card-img-top img" alt="img" />
+                  </div>
+                  <div className="body-card">
+                    <h5 className="card-title font-semibold">Proyecto Inmobiliaria</h5>
+                    <p className="purple mb-0 font-semibold">Full Stack</p>
+                    <p className="font-light">
+                      Java, Spring Boot, MySQL, React
                     </p>
                   </div>
                 </div>
