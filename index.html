@@ -1,78 +1,54 @@
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<!doctype html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- Título y descripción -->
-  <title>Santiago Cabrerizo</title>
-  <meta name="description" content="Programador Full Stack con experiencia en desarrollo y diseño de aplicaciones web modernas." />
+    
+    <!-- ==========================================
+         SEO BÁSICO
+    ========================================== -->
+    <title>Santiago Cabrerizo</title>
+    <meta name="description" content="Portfolio de Santiago Cabrerizo. Desarrollador Full Stack y Estudiante de Ingeniería en Sistemas." />
+    <meta name="keywords" content="Santiago Cabrerizo, Desarrollador Web, Full Stack, React, Node.js, Ingeniería en Sistemas, Argentina, Portfolio, Frontend, Backend" />
+    <meta name="author" content="Santiago Cabrerizo" />
+    
+    <!-- Color de la barra de navegador en móviles (Coincide con bg-slate-950) -->
+    <meta name="theme-color" content="#020617" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/favicon.webp" />
+    <!-- ==========================================
+         REDES SOCIALES (Open Graph / LinkedIn / WhatsApp)
+    ========================================== -->
+    <!-- Tipo de contenido -->
+    <meta property="og:type" content="website" />
+    <!-- URL de tu web (Cámbialo cuando hagas el deploy) -->
+    <meta property="og:url" content="https://santiagocabrerizo.com/" />
+    <!-- Título que sale en la tarjeta -->
+    <meta property="og:title" content="Santiago Cabrerizo | Desarrollador de Software" />
+    <!-- Descripción de la tarjeta -->
+    <meta property="og:description" content="Mira mis proyectos y contáctame." />
+    <!-- Imagen que se ve al compartir (Debe ser una URL absoluta, ej: https://tuweb.com/og-image.jpg) -->
+    <meta property="og:image" content="https://santiagocabrerizo.com/og-preview.jpg" />
 
-  <!-- Open Graph (para Google y redes sociales) -->
-  <meta property="og:title" content="Santiago Cabrerizo" />
-  <meta property="og:description" content="Programador Full Stack con experiencia en desarrollo y diseño de aplicaciones web modernas." />
-  <meta property="og:image" content="https://santiagocabrerizo.com/assets/Perfil2.webp" />
-  <meta property="og:url" content="https://santiagocabrerizo.com" />
-  <meta property="og:type" content="website" />
+    <!-- ==========================================
+         TWITTER / X
+    ========================================== -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://santiagocabrerizo.com/" />
+    <meta property="twitter:title" content="Santiago Cabrerizo | Desarrollador de Software" />
+    <meta property="twitter:description" content="Mira mis proyectos y contáctame." />
+    <meta property="twitter:image" content="https://santiagocabrerizo.com/og-preview.jpg" />
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Santiago Cabrerizo" />
-  <meta name="twitter:description" content="Programador Full Stack con experiencia en desarrollo y diseño de aplicaciones web modernas." />
-  <meta name="twitter:image" content="https://santiagocabrerizo.com/assets/Perfil2.webp" />
+    <!-- ==========================================
+         FUENTES (Inter - Google Fonts)
+    ========================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Datos estructurados Schema.org -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Santiago Cabrerizo",
-    "url": "https://santiagocabrerizo.com",
-    "image": "https://santiagocabrerizo.com/assets/Perfil2.webp",
-    "jobTitle": "Programador Full Stack",
-    "sameAs": [
-      "https://www.linkedin.com/in/santiago-cabrerizo-0a6097240/",
-      "https://github.com/SantiagoCabrerizo"
-    ]
-  }
-  </script>
-
-  <!-- CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-    crossorigin="anonymous"
-  />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link rel="stylesheet" href="src/index.css" />
-
-  <link
-      rel="preload"
-      href="/assets/fonts/Givonic-Black.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-
-    <meta name="google-site-verification" content="MTV4FFW5Hbom60JP5On1kpHIZUaehF9EiG88lGGXLOQ" />
-
-</head>
-
-
-  <body>
-    <div id="root">
-    <!-- Scripts al final para no bloquear render -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+  </head>
+  <body class="bg-slate-950 text-slate-200">
+    <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -1,168 +1,170 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import emailjs from '@emailjs/browser';
+import { Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-export const Contact = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({ mode: "onBlur" });
+export default function Contact() {
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
 
-  const [mensajeEnviado, setMensajeEnviado] = useState(false);
-  const emailValue = watch("user_email");
+    const {
+        register,
+        handleSubmit,
+        watch,
+        reset,
+        formState: { errors, isSubmitting },
+    } = useForm();
 
-  const sendEmail = async (data) => {
-    try {
-      const formData = new FormData();
-      Object.entries(data).forEach(([key, value]) => {
-        formData.append(key, value);
-      });
+    const emailValue = watch("email");
 
-      // Campos extra para Formsubmit
-      formData.append("_captcha", "false");
-      formData.append("_next", "https://santiagocabrerizo.com");
-      formData.append("_template", "table");
-      formData.append("_subject", "Nuevo mensaje desde el portfolio");
-      formData.append("_replyto", data.user_email);
+    const onSubmit = async (data) => {
+        setErrorMsg('');
 
-      const response = await fetch("https://formsubmit.co/santi.cabrerizo69@gmail.com", {
-        method: "POST",
-        body: formData,
-      });
+        // Configuración de EmailJS
+        const serviceId = 'service_khrgpdb';
+        const templateId = 'template_dohxq98';
+        const publicKey = '0ZLWzUC5NjLuJYUKE';
 
-    console.log(`Response: ${response}`);
+        const templateParams = {
+            from_name: data.nombre,
+            from_email: data.email,
+            message: data.mensaje,
+        };
 
-      if (response.ok) {
-        setMensajeEnviado(true);
-      } else {
-        alert("Hubo un error al enviar el mensaje. Intenta nuevamente.");
-      }
-    } catch (error) {
-      console.error("Error al enviar el formulario:", error);
-      alert("Hubo un error al enviar el mensaje. Intenta nuevamente.");
-    }
-  };
+        try {
+            await emailjs.send(serviceId, templateId, templateParams, publicKey);
+            setIsSuccess(true);
+            reset(); // Limpiar formulario
 
-  return (
-    <div id="contact" className="center d-flex align-items-center">
-      <div className="container col-xxl-8 px-4 py-5 text-center">
-        <div className="py-5">
-          <h1 className="display-4 font-semibold text-body-emphasis lh-1 mb-3">
-            Contacto<span className="purple">.</span>
-          </h1>
+            // Ocultar mensaje de éxito después de 5 segundos
+            setTimeout(() => setIsSuccess(false), 5000);
 
-          <div className="form-signin py-3">
-            {mensajeEnviado ? (
-              <div>
-                <h2>¡Gracias por tu mensaje! Pronto nos pondremos en contacto.</h2>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit(sendEmail)} className="row g-2">
-                
-                {/* Nombre */}
-                <div className="form-floating mb-3 col-md-6">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Nombre"
-                    {...register("user_name", {
-                      required: "Ingrese su nombre",
-                      minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                    })}
-                  />
-                  <label>Nombre</label>
-                  {errors.user_name && (
-                    <span className="span-validation">{errors.user_name.message}</span>
-                  )}
-                </div>
+        } catch (error) {
+            console.error('Error al enviar:', error);
+            setErrorMsg('Hubo un error al enviar el mensaje. Por favor intenta nuevamente.');
+        }
+    };
 
-                {/* Apellido */}
-                <div className="form-floating mb-3 col-md-6">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Apellido"
-                    {...register("user_lastname", {
-                      required: "Ingrese su apellido",
-                      minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                    })}
-                  />
-                  <label>Apellido</label>
-                  {errors.user_lastname && (
-                    <span className="span-validation">{errors.user_lastname.message}</span>
-                  )}
-                </div>
-
-                {/* Email */}
-                <div className="form-floating mb-3 col-md-6">
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Email"
-                    {...register("user_email", {
-                      required: "Ingrese su email",
-                      pattern: {
-                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: "Formato de email inválido",
-                      },
-                    })}
-                  />
-                  <label>Email</label>
-                  {errors.user_email && (
-                    <span className="span-validation">{errors.user_email.message}</span>
-                  )}
-                </div>
-
-                {/* Confirmar Email */}
-                <div className="form-floating mb-3 col-md-6">
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Confirmar Email"
-                    {...register("confirm_email", {
-                      required: "Confirme su email",
-                      validate: (value) =>
-                        value === emailValue || "Los emails no coinciden",
-                    })}
-                  />
-                  <label>Confirmar Email</label>
-                  {errors.confirm_email && (
-                    <span className="span-validation">{errors.confirm_email.message}</span>
-                  )}
-                </div>
-
-                {/* Mensaje */}
-                <div className="form-floating mb-3 mx-auto">
-                  <textarea
-                    className="form-control msg"
-                    rows="3"
-                    placeholder="Mensaje"
-                    {...register("message", {
-                      required: "Ingrese su mensaje",
-                      minLength: { value: 10, message: "Mínimo 10 caracteres" },
-                    })}
-                  ></textarea>
-                  <label>Mensaje</label>
-                  {errors.message && (
-                    <span className="span-validation">{errors.message.message}</span>
-                  )}
-                </div>
-
-                {/* Botón */}
-                <div className="d-flex justify-content-center mt-4">
-                  <button type="submit" className="boton-form">
-                    Enviar
-                    <div className="arrow-wrapper">
-                      <div className="arrow"></div>
+    return (
+        <section id="contact" className="py-20">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="bg-slate-900 rounded-2xl p-8 md:p-12 border border-slate-800 shadow-2xl">
+                    <div className="text-center mb-10">
+                        <h2 className="text-3xl font-bold text-white mb-4">Hablemos</h2>
+                        <p className="text-slate-400">¿Tienes un proyecto en mente? Estoy listo para nuevas oportunidades.</p>
                     </div>
-                  </button>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-4">
+                                <div className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center text-cyan-400">
+                                    <Mail />
+                                </div>
+                                <div>
+                                    <p className="text-sm text-slate-500">Email</p>
+                                    <p className="text-white font-medium">santi.cabrerizo69@gmail.com</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div className='md:col-span-2 pl-6'>
+                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+
+                                {/* Input Nombre */}
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder="Nombre"
+                                        {...register("nombre", {
+                                            required: "El nombre es obligatorio",
+                                            minLength: { value: 2, message: "Mínimo 2 caracteres" }
+                                        })}
+                                        className={`w-full bg-slate-950 border rounded-lg px-4 py-3 text-white focus:outline-none transition-colors ${errors.nombre ? 'border-red-500 focus:border-red-500' : 'border-slate-800 focus:border-cyan-500'}`}
+                                    />
+                                    {errors.nombre && <span className="text-red-400 text-xs mt-1 block">{errors.nombre.message}</span>}
+                                </div>
+
+                                {/* Input Email */}
+                                <div>
+                                    <input
+                                        type="email"
+                                        placeholder="Email"
+                                        {...register("email", {
+                                            required: "El email es obligatorio",
+                                            pattern: {
+                                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                                message: "Email inválido"
+                                            }
+                                        })}
+                                        className={`w-full bg-slate-950 border rounded-lg px-4 py-3 text-white focus:outline-none transition-colors ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-slate-800 focus:border-cyan-500'}`}
+                                    />
+                                    {errors.email && <span className="text-red-400 text-xs mt-1 block">{errors.email.message}</span>}
+                                </div>
+
+                                {/* Input Confirmar Email */}
+                                <div>
+                                    <input
+                                        type="email"
+                                        placeholder="Confirmar Email"
+                                        {...register("confirmEmail", {
+                                            required: "Debes confirmar tu email",
+                                            validate: (value) => value === emailValue || "Los correos no coinciden"
+                                        })}
+                                        className={`w-full bg-slate-950 border rounded-lg px-4 py-3 text-white focus:outline-none transition-colors ${errors.confirmEmail ? 'border-red-500 focus:border-red-500' : 'border-slate-800 focus:border-cyan-500'}`}
+                                    />
+                                    {errors.confirmEmail && <span className="text-red-400 text-xs mt-1 block">{errors.confirmEmail.message}</span>}
+                                </div>
+
+                                {/* Textarea Mensaje */}
+                                <div>
+                                    <textarea
+                                        rows="4"
+                                        placeholder="Mensaje"
+                                        {...register("mensaje", { required: "El mensaje no puede estar vacío" })}
+                                        className={`w-full bg-slate-950 border rounded-lg px-4 py-3 text-white focus:outline-none transition-colors ${errors.mensaje ? 'border-red-500 focus:border-red-500' : 'border-slate-800 focus:border-cyan-500'}`}
+                                    ></textarea>
+                                    {errors.mensaje && <span className="text-red-400 text-xs mt-1 block">{errors.mensaje.message}</span>}
+                                </div>
+
+                                {/* Feedback de errores generales */}
+                                {errorMsg && (
+                                    <div className="flex items-center gap-2 text-red-400 text-sm bg-red-900/20 p-3 rounded-lg">
+                                        <AlertCircle size={16} /> {errorMsg}
+                                    </div>
+                                )}
+
+                                {/* Feedback de Éxito */}
+                                {isSuccess && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="flex items-center gap-2 text-green-400 text-sm bg-green-900/20 p-3 rounded-lg"
+                                    >
+                                        <CheckCircle size={16} /> ¡Mensaje enviado con éxito!
+                                    </motion.div>
+                                )}
+
+                                {/* Botón Submit */}
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-3 rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    {isSubmitting ? 'Enviando...' : (
+                                        <>
+                                            Enviar Mensaje <Send size={18} />
+                                        </>
+                                    )}
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
-              </form>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+            </div>
+        </section>
+    );
+}
