@@ -11,6 +11,7 @@ import imgVentas2 from '../assets/projects/gestorVentas/gestor_prod.webp'
 import imgVentas3 from '../assets/projects/gestorVentas/gestor_venta.webp'
 import imgVentas4 from '../assets/projects/gestorVentas/gestor_cliente.webp'
 import imgVentas5 from '../assets/projects/gestorVentas/gestor_deuda.webp'
+import imgRectificacionesMoron from '../assets/projects/landing_moron.webp'
 
 const projects = [
     {
@@ -33,7 +34,14 @@ const projects = [
         ]
     },
     {
-        title: "Landing Page",
+        title: "Landing Page | Rectificaciones Morón",
+        desc: "Landing Page para empresa de rectificaciones.",
+        techs: ["React", "Vite", "Tailwind CSS"],
+        image: imgRectificacionesMoron,
+        demoUrl: "https://rectificacionesmoron.vercel.app/",
+    },
+    {
+        title: "Landing Page | Rectificaciones Valle de Uco",
         desc: "Landing Page para empresa de rectificaciones.",
         techs: ["React", "Vite", "Tailwind CSS"],
         image: imgRectificaciones,
