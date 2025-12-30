@@ -34,18 +34,11 @@ const projects = [
         ]
     },
     {
-        title: "Landing Page | Rectificaciones Morón",
+        title: "Landing Page | RVU Rectificaciones",
         desc: "Landing Page para empresa de rectificaciones.",
         techs: ["React", "Vite", "Tailwind CSS"],
         image: imgRectificacionesMoron,
-        demoUrl: "https://rectificacionesmoron.vercel.app/",
-    },
-    {
-        title: "Landing Page | Rectificaciones Valle de Uco",
-        desc: "Landing Page para empresa de rectificaciones.",
-        techs: ["React", "Vite", "Tailwind CSS"],
-        image: imgRectificaciones,
-        demoUrl: "https://rectificacionesvalledeuco.netlify.app/",
+        demoUrl: "https://rvurectificaciones.com.ar/",
     },
     {
         title: "ChatBot",
