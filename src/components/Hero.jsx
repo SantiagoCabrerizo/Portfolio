@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Github, Linkedin, Download } from 'lucide-react';
-import cv from '../assets/CV.pdf';
+import cv from '../assets/CV_SantiagoCabrerizo.pdf';
 
 export default function Hero() {
     return (

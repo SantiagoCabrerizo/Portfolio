@@ -64,7 +64,7 @@ export default function Contact() {
                                 </div>
                                 <div>
                                     <p className="text-sm text-slate-500">Email</p>
-                                    <p className="text-white font-medium">santi.cabrerizo69@gmail.com</p>
+                                    <p className="text-white font-medium">santiagocabrerizo24@gmail.com</p>
                                 </div>
                             </div>
 
