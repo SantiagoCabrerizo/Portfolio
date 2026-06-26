@@ -126,25 +126,127 @@ export default function Projects() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedProject]);
 
+  const [featured, ...rest] = projects;
+
   return (
     <section
       id="projects"
-      className="py-20 bg-slate-900/50 relative min-h-screen"
+      className="py-20 bg-slate-900/50 relative min-h-screen overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">
-          Proyectos
-        </h2>
+      {/* Grid de fondo tipo blueprint, coherente con Hero y Skills */}
+      <div
+        className="absolute inset-0 opacity-[0.05] pointer-events-none"
+        style={{
+          backgroundImage:
+            'linear-gradient(to right, #38bdf8 1px, transparent 1px), linear-gradient(to bottom, #38bdf8 1px, transparent 1px)',
+          backgroundSize: '56px 56px',
+        }}
+      />
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <span className="text-cyan-400 font-mono text-sm tracking-[0.2em] uppercase">
+            // proyectos.map()
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mt-3">
+            Proyectos
+          </h2>
+        </motion.div>
+
+        {/* PROYECTO DESTACADO */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="mb-10 bg-slate-950 rounded-2xl overflow-hidden border border-cyan-500/30 shadow-2xl shadow-cyan-500/5 group grid md:grid-cols-2"
+        >
+          <div className="h-64 md:h-full w-full flex items-center justify-center relative bg-slate-900 order-1 md:order-none">
+            <img
+              src={featured.image}
+              alt={featured.title}
+              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+            />
+            {featured.gallery && (
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <button
+                  onClick={() => setSelectedProject(featured)}
+                  className="text-white flex items-center gap-2 font-medium bg-cyan-600 px-4 py-2 rounded-full hover:bg-cyan-500 transition-colors"
+                >
+                  <Images size={20} /> Ver Galería
+                </button>
+              </div>
+            )}
+          </div>
+
+          <div className="p-8 md:p-10 flex flex-col justify-center">
+            <span className="inline-flex items-center gap-2 mb-4 text-xs font-mono uppercase tracking-wider text-cyan-300 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-3 py-1 w-fit">
+              Proyecto destacado
+            </span>
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
+              {featured.title}
+            </h3>
+            <p className="text-slate-400 mb-6">{featured.desc}</p>
+
+            <div className="flex flex-wrap gap-2 mb-8">
+              {featured.techs.map((tech, idx) => (
+                <span
+                  key={idx}
+                  className="text-[10px] uppercase tracking-wider px-2 py-1 bg-slate-900 border border-slate-700 rounded text-cyan-400 font-semibold"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <div className="flex gap-4 mt-auto border-t border-slate-800 pt-5">
+              {featured.repoUrl && (
+                <a
+                  href={featured.repoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                >
+                  <Github size={18} /> Code
+                </a>
+              )}
+              {featured.demoUrl && (
+                <a
+                  href={featured.demoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                >
+                  <ExternalLink size={18} /> Live Demo
+                </a>
+              )}
+              {featured.gallery && (
+                <button
+                  onClick={() => setSelectedProject(featured)}
+                  className="flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors ml-auto"
+                >
+                  Interfaces
+                </button>
+              )}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* RESTO DE PROYECTOS */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {rest.map((project, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               whileHover={{ y: -10 }}
-              className="bg-slate-950 rounded-xl overflow-hidden border border-slate-800 shadow-lg group flex flex-col"
+              className="bg-slate-950 rounded-xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-colors shadow-lg group flex flex-col"
             >
               <div className="h-48 w-full flex items-center justify-center relative bg-slate-900">
                 <img
