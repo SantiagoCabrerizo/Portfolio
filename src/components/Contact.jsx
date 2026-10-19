@@ -56,9 +56,9 @@ export default function Contact() {
     setErrorMsg("");
 
     // Configuración de EmailJS
-    const serviceId = "service_khrgpdb";
-    const templateId = "template_dohxq98";
-    const publicKey = "0ZLWzUC5NjLuJYUKE";
+    const serviceId = "service_q1h5c3s";
+    const templateId = "template_tcl30my";
+    const publicKey = "LXxH6hSNculp-NQNm";
 
     const templateParams = {
       from_name: data.nombre,
