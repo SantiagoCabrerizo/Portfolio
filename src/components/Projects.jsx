@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ExternalLink,
@@ -28,6 +28,12 @@ import imgApp4 from "../assets/projects/appRvu/r4.webp";
 import imgApp5 from "../assets/projects/appRvu/r5.webp";
 import imgApp6 from "../assets/projects/appRvu/r6.webp";
 import imgApp7 from "../assets/projects/appRvu/r7.webp";
+
+const display = { fontFamily: "'Bricolage Grotesque', system-ui, sans-serif" };
+const bodyFont = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" };
+
+const focus =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-400";
 
 const projects = [
   {
@@ -88,11 +94,84 @@ const projects = [
   },
 ];
 
+/* Captura del proyecto. Si tiene galería, es un botón (funciona también en touch). */
+function Media({ project, onOpen }) {
+  const box =
+    "block w-full aspect-[16/10] overflow-hidden rounded-md border border-slate-800 bg-slate-900";
+  const img = (
+    <img
+      src={project.image}
+      alt={`Captura de ${project.title}`}
+      loading="lazy"
+      className="h-full w-full object-contain"
+    />
+  );
+
+  if (!project.gallery) return <div className={box}>{img}</div>;
+
+  return (
+    <button
+      type="button"
+      onClick={() => onOpen(project)}
+      aria-label={`Ver interfaces de ${project.title}`}
+      className={`${box} cursor-zoom-in transition-colors hover:border-slate-600 ${focus}`}
+    >
+      {img}
+    </button>
+  );
+}
+
+function Links({ project, onOpen }) {
+  const link = `inline-flex items-center gap-2 text-sm font-medium text-slate-300 transition-colors hover:text-white ${focus}`;
+  if (!project.repoUrl && !project.demoUrl && !project.gallery) return null;
+
+  return (
+    <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3">
+      {project.repoUrl && (
+        <a
+          href={project.repoUrl}
+          target="_blank"
+          rel="noreferrer"
+          className={link}
+        >
+          <Github size={16} aria-hidden="true" /> Código
+        </a>
+      )}
+      {project.demoUrl && (
+        <a
+          href={project.demoUrl}
+          target="_blank"
+          rel="noreferrer"
+          className={link}
+        >
+          <ExternalLink size={16} aria-hidden="true" /> Ver sitio
+        </a>
+      )}
+      {project.gallery && (
+        <button type="button" onClick={() => onOpen(project)} className={link}>
+          <Images size={16} aria-hidden="true" /> Ver interfaces (
+          {project.gallery.length})
+        </button>
+      )}
+    </div>
+  );
+}
+
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const closeRef = useRef(null);
 
-  // Funciones de navegación
+  const openModal = (project) => {
+    setCurrentIndex(0);
+    setSelectedProject(project);
+  };
+
+  const closeModal = () => {
+    setSelectedProject(null);
+    setCurrentIndex(0);
+  };
+
   const nextImage = (e) => {
     e?.stopPropagation();
     if (!selectedProject?.gallery) return;
@@ -109,12 +188,7 @@ export default function Projects() {
     );
   };
 
-  const closeModal = () => {
-    setSelectedProject(null);
-    setCurrentIndex(0);
-  };
-
-  // Manejo de teclado para una mejor UX
+  // Teclado: flechas y Escape
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (!selectedProject) return;
@@ -126,288 +200,183 @@ export default function Projects() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedProject]);
 
+  // Bloquea el scroll de fondo y lleva el foco al botón de cerrar
+  useEffect(() => {
+    if (!selectedProject) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [selectedProject]);
+
   const [featured, ...rest] = projects;
 
   return (
     <section
       id="projects"
-      className="py-20 bg-slate-900/50 relative min-h-screen overflow-hidden"
+      style={bodyFont}
+      className="border-t border-slate-800 bg-slate-950 py-20 sm:py-28"
     >
-      {/* Grid de fondo tipo blueprint, coherente con Hero y Skills */}
-      <div
-        className="absolute inset-0 opacity-[0.05] pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, #38bdf8 1px, transparent 1px), linear-gradient(to bottom, #38bdf8 1px, transparent 1px)',
-          backgroundSize: '56px 56px',
-        }}
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
-          <span className="text-cyan-400 font-mono text-sm tracking-[0.2em] uppercase">
-            // proyectos.map()
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-3">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <header className="mb-14 max-w-xl sm:mb-16">
+          <h2
+            style={display}
+            className="text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-slate-50 sm:text-5xl"
+          >
             Proyectos
           </h2>
-        </motion.div>
+          <p className="mt-5 text-lg leading-relaxed text-slate-400">
+            Una selección de lo que construí, con el stack y el código o el
+            sitio en producción cuando están disponibles.
+          </p>
+        </header>
 
-        {/* PROYECTO DESTACADO */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.97 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="mb-10 bg-slate-950 rounded-2xl overflow-hidden border border-cyan-500/30 shadow-2xl shadow-cyan-500/5 group grid md:grid-cols-2"
-        >
-          <div className="h-64 md:h-full w-full flex items-center justify-center relative bg-slate-900 order-1 md:order-none">
-            <img
-              src={featured.image}
-              alt={featured.title}
-              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-            />
-            {featured.gallery && (
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <button
-                  onClick={() => setSelectedProject(featured)}
-                  className="text-white flex items-center gap-2 font-medium bg-cyan-600 px-4 py-2 rounded-full hover:bg-cyan-500 transition-colors"
-                >
-                  <Images size={20} /> Ver Galería
-                </button>
-              </div>
-            )}
+        {/* Proyecto principal: más grande, sin etiqueta */}
+        <article className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
+          <div className="lg:col-span-7">
+            <Media project={featured} onOpen={openModal} />
           </div>
-
-          <div className="p-8 md:p-10 flex flex-col justify-center">
-            <span className="inline-flex items-center gap-2 mb-4 text-xs font-mono uppercase tracking-wider text-cyan-300 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-3 py-1 w-fit">
-              Proyecto destacado
-            </span>
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
+          <div className="lg:col-span-5">
+            <h3
+              style={display}
+              className="text-2xl font-semibold tracking-[-0.02em] text-slate-50 sm:text-3xl"
+            >
               {featured.title}
             </h3>
-            <p className="text-slate-400 mb-6">{featured.desc}</p>
-
-            <div className="flex flex-wrap gap-2 mb-8">
-              {featured.techs.map((tech, idx) => (
-                <span
-                  key={idx}
-                  className="text-[10px] uppercase tracking-wider px-2 py-1 bg-slate-900 border border-slate-700 rounded text-cyan-400 font-semibold"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex gap-4 mt-auto border-t border-slate-800 pt-5">
-              {featured.repoUrl && (
-                <a
-                  href={featured.repoUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
-                >
-                  <Github size={18} /> Code
-                </a>
-              )}
-              {featured.demoUrl && (
-                <a
-                  href={featured.demoUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
-                >
-                  <ExternalLink size={18} /> Live Demo
-                </a>
-              )}
-              {featured.gallery && (
-                <button
-                  onClick={() => setSelectedProject(featured)}
-                  className="flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors ml-auto"
-                >
-                  Interfaces
-                </button>
-              )}
-            </div>
+            <p className="mt-4 max-w-md leading-relaxed text-slate-300">
+              {featured.desc}
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-slate-400">
+              {featured.techs.join(", ")}
+            </p>
+            <Links project={featured} onOpen={openModal} />
           </div>
-        </motion.div>
+        </article>
 
-        {/* RESTO DE PROYECTOS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {rest.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-              className="bg-slate-950 rounded-xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-colors shadow-lg group flex flex-col"
-            >
-              <div className="h-48 w-full flex items-center justify-center relative bg-slate-900">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                />
-                {project.gallery && (
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="text-white flex items-center gap-2 font-medium bg-cyan-600 px-4 py-2 rounded-full hover:bg-cyan-500 transition-colors"
-                    >
-                      <Images size={20} /> Ver Galería
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-slate-400 text-sm mb-4 flex-1">
-                  {project.desc}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.techs.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="text-[10px] uppercase tracking-wider px-2 py-1 bg-slate-900 border border-slate-700 rounded text-cyan-400 font-semibold"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex gap-4 mt-auto border-t border-slate-800 pt-4">
-                  {project.repoUrl && (
-                    <a
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
-                    >
-                      <Github size={18} /> Code
-                    </a>
-                  )}
-                  {project.demoUrl && (
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
-                    >
-                      <ExternalLink size={18} /> Live Demo
-                    </a>
-                  )}
-                  {project.gallery && (
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors ml-auto"
-                    >
-                      Interfaces
-                    </button>
-                  )}
-                </div>
-              </div>
-            </motion.div>
+        {/* Resto */}
+        <div className="mt-16 grid gap-x-8 gap-y-14 border-t border-slate-800 pt-14 md:grid-cols-2 lg:grid-cols-3">
+          {rest.map((project) => (
+            <article key={project.title} className="flex flex-col">
+              <Media project={project} onOpen={openModal} />
+              <h3
+                style={display}
+                className="mt-5 text-xl font-semibold tracking-[-0.01em] text-slate-50"
+              >
+                {project.title}
+              </h3>
+              <p className="mt-2 leading-relaxed text-slate-300">
+                {project.desc}
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-400">
+                {project.techs.join(", ")}
+              </p>
+              <Links project={project} onOpen={openModal} />
+            </article>
           ))}
         </div>
       </div>
 
-      {/* MODAL DE GALERÍA (ESTILO SLIDER) */}
+      {/* Galería */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Interfaces de ${selectedProject.title}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 md:p-10"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/95 p-4 sm:p-8"
             onClick={closeModal}
           >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-5xl h-full flex flex-col"
+            <div
+              className="flex h-full w-full max-w-5xl flex-col"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Header del Modal */}
-              <div className="flex justify-between items-center mb-4 text-white">
-                <div>
-                  <h3 className="text-xl md:text-2xl font-bold">
-                    {selectedProject.title}
-                  </h3>
-                  <p className="text-slate-400 text-sm">
-                    Visualizando detalle de interfaz
-                  </p>
-                </div>
-                <button
-                  onClick={closeModal}
-                  className="p-2 hover:bg-slate-800 rounded-full transition-colors"
+              <div className="mb-4 flex items-center justify-between gap-4">
+                <h3
+                  style={display}
+                  className="text-xl font-semibold text-slate-50 sm:text-2xl"
                 >
-                  <X size={32} />
+                  {selectedProject.title}
+                </h3>
+                <button
+                  ref={closeRef}
+                  type="button"
+                  onClick={closeModal}
+                  aria-label="Cerrar galería"
+                  className={`rounded-full p-2 text-slate-300 transition-colors hover:bg-slate-800 hover:text-white ${focus}`}
+                >
+                  <X size={28} aria-hidden="true" />
                 </button>
               </div>
 
-              {/* Contenedor Principal de la Imagen */}
-              <div className="relative flex-1 flex items-center justify-center bg-slate-900/50 rounded-2xl border border-slate-800 overflow-hidden">
-                {/* Botón Prev */}
-                <button
-                  onClick={prevImage}
-                  className="absolute left-4 z-10 p-3 rounded-full bg-black/40 text-white hover:bg-cyan-500 transition-all border border-white/10 backdrop-blur-sm"
-                >
-                  <ChevronLeft size={32} />
-                </button>
+              <div className="relative flex flex-1 items-center justify-center overflow-hidden rounded-md border border-slate-800 bg-slate-900">
+                {selectedProject.gallery.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={prevImage}
+                    aria-label="Imagen anterior"
+                    className={`absolute left-3 z-10 rounded-full border border-slate-700 bg-slate-950/80 p-2.5 text-slate-100 transition-colors hover:bg-slate-800 ${focus}`}
+                  >
+                    <ChevronLeft size={24} aria-hidden="true" />
+                  </button>
+                )}
 
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={currentIndex}
                     src={selectedProject.gallery[currentIndex]}
-                    alt="Preview"
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -50 }}
-                    transition={{ duration: 0.3 }}
-                    className="max-w-full max-h-[70vh] object-contain shadow-2xl"
+                    alt={`${selectedProject.title}, imagen ${currentIndex + 1} de ${selectedProject.gallery.length}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="max-h-[70vh] max-w-full object-contain"
                   />
                 </AnimatePresence>
 
-                {/* Botón Next */}
-                <button
-                  onClick={nextImage}
-                  className="absolute right-4 z-10 p-3 rounded-full bg-black/40 text-white hover:bg-cyan-500 transition-all border border-white/10 backdrop-blur-sm"
-                >
-                  <ChevronRight size={32} />
-                </button>
+                {selectedProject.gallery.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={nextImage}
+                    aria-label="Imagen siguiente"
+                    className={`absolute right-3 z-10 rounded-full border border-slate-700 bg-slate-950/80 p-2.5 text-slate-100 transition-colors hover:bg-slate-800 ${focus}`}
+                  >
+                    <ChevronRight size={24} aria-hidden="true" />
+                  </button>
+                )}
               </div>
 
-              {/* Footer del Modal (Indicadores) */}
-              <div className="mt-6 flex flex-col items-center gap-4">
-                <div className="flex gap-2">
+              <div className="mt-4 flex flex-col items-center gap-2">
+                <div className="flex items-center">
                   {selectedProject.gallery.map((_, idx) => (
                     <button
                       key={idx}
+                      type="button"
                       onClick={() => setCurrentIndex(idx)}
-                      className={`h-1.5 transition-all duration-300 rounded-full ${
-                        idx === currentIndex
-                          ? "w-8 bg-cyan-400"
-                          : "w-2 bg-slate-600"
-                      }`}
-                    />
+                      aria-label={`Ir a la imagen ${idx + 1}`}
+                      aria-current={idx === currentIndex}
+                      className={`p-1.5 ${focus}`}
+                    >
+                      <span
+                        className={`block h-1.5 rounded-full transition-all duration-300 ${
+                          idx === currentIndex
+                            ? "w-8 bg-slate-100"
+                            : "w-2 bg-slate-600"
+                        }`}
+                      />
+                    </button>
                   ))}
                 </div>
-                <span className="text-slate-500 text-sm font-mono">
+                <span className="text-sm tabular-nums text-slate-400">
                   {currentIndex + 1} / {selectedProject.gallery.length}
                 </span>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
